@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'simple_form'
 gem 'acts_as_commentable'
 gem 'devise'
 gem 'carrierwave'

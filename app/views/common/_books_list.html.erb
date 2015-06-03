@@ -1,11 +1,6 @@
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-
 <div>
   <img src=<%= asset_path "large.jpg"%> width='100%'>
 </div>
-<p id="notice"><%= notice %></p>
-
 
 <h1>Most Viewed</h1>
 
@@ -33,7 +28,7 @@
         <td><%= view.category.name %></td>
         <td><%= view.author.name %></td>
         <td><%= view.impressions_count %></td>
-        <td><%= link_to 'Show', view %></td>
+        <td><%= link_to 'Show', view , class: "btn btn-success"  %></td>
       </tr>
     <% end %>
   </tbody>
@@ -66,7 +61,7 @@
         <td><%= book.category.name %></td>
         <td><%= book.author.name %></td>
         <td><%= book.impressions_count %></td>
-        <td><%= link_to 'Show', book %></td>
+        <td><%= link_to 'Show', book , class: "btn btn-primary" %></td>
         <% if current_user.try(:admin?) %>
         <td><%= link_to 'Edit', edit_book_path(book) %></td>
         <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -79,4 +74,4 @@
 <br>
 <%= will_paginate books, renderer: BootstrapPagination::Rails %>
 <br>
-<%= link_to 'New Book', new_book_path %>
+<%= link_to 'New Book', new_book_path , class: "btn btn-warning"%>
