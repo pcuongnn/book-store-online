@@ -24,7 +24,7 @@
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <% @categories.each do |category| %>
-            	<li><a href="#"><%= category.name %></a><li>
+            	<li><a href=<%= category_path(category) %>><%= category.name %></a><li>
             <% end %>
             <li class="divider"></li>
             <li><a role="menuitem" tabindex="-1" href=<%= categories_path %>> All</a></li>
@@ -36,7 +36,7 @@
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <% @authors.each do |author| %>
-            	<li><a href="#"><%= author.name %></a><li>
+            	<li><a href=<%= author_path(author) %>><%= author.name %></a><li>
             <% end %>
             <li class="divider"></li>
             <li><a role="menuitem" tabindex="-1" href=<%= authors_path %>> All</a></li>
