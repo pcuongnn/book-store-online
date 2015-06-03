@@ -11,6 +11,7 @@ class AuthorsController < ApplicationController
   # GET /authors/1.json
   def show
     @author_book_list = @author.books.paginate(:page => params[:page], :per_page => 5).order('price DESC')  
+    @author_most_viewed = @author.books.order('impressions_count DESC').take(3)
   end
 
   # GET /authors/new

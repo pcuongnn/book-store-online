@@ -11,6 +11,7 @@ class CategoriesController < ApplicationController
   # GET /categories/1.json
   def show
     @category_book_list = @category.books.paginate(:page => params[:page], :per_page => 5).order('price DESC')
+    @category_most_viewed = @category.books.order('impressions_count DESC').take(3)
   end
 
   # GET /categories/new

@@ -3,6 +3,40 @@
 </div>
 <p id="notice"><%= notice %></p>
 
+
+<h1>Most Viewed</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Category</th>
+      <th>Author</th>
+      <th>View</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% views.each do |view| %>
+      <tr class="success">
+        <td><img src=<%= view.image_url %> width="50" height="70" ></td>
+        <td><%= view.title %></td>
+        <td><%= view.description %></td>
+        <td><%= view.price %></td>
+        <td><%= view.category.name %></td>
+        <td><%= view.author.name %></td>
+        <td><%= view.impressions_count %></td>
+        <td><%= link_to 'Show', view %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
 <h1>Listing Books</h1>
 
 <table class="table table-hover">
@@ -14,6 +48,7 @@
       <th>Price</th>
       <th>Category</th>
       <th>Author</th>
+      <th>View</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -27,6 +62,7 @@
         <td><%= book.price %></td>
         <td><%= book.category.name %></td>
         <td><%= book.author.name %></td>
+        <td><%= book.impressions_count %></td>
         <td><%= link_to 'Show', book %></td>
         <td><%= link_to 'Edit', edit_book_path(book) %></td>
         <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
