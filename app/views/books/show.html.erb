@@ -34,5 +34,21 @@
   <strong>View:</strong>
   <%= @book.impressions_count %>
 </p>
+<% @all_comment.each do |t| %>
+  <% unless t.new_record? %>
+    <ul>
+      <li><%= t.user.try(:email) %></i> : <%= t.comment %></li>
+    </ul>
+  <% end %>
+<% end %>
+
+
+<%= form_for(@new_comment) do |f| %>
+  <%= f.text_area :comment %>
+  <%= f.hidden_field :commentable_type %>
+  <%= f.hidden_field :commentable_id %>
+</br>
+  <%= f.submit %>
+<% end %>
 
 <%= link_to 'Back', books_path %>

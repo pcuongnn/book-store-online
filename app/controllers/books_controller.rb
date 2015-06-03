@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :set_book,:authenticate_user!, only: [:show, :edit, :update, :destroy]
   impressionist :actions=>[:show,:index]
   # GET /books
   # GET /books.json
@@ -11,6 +11,8 @@ class BooksController < ApplicationController
   # GET /books/1
   # GET /books/1.json
   def show
+    @all_comment = @book.comments
+    @new_comment = @book.comments.build
   end
 
   # GET /books/new
