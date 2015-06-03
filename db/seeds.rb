@@ -16,7 +16,7 @@ authors.each do |au|
 	Author.create(name:au)
 end
 
-(1..10).each do |t|
+(1..20).each do |t|
 	b = Book.new
 	b.title = "Book #{t}"
 	b.price = rand(20..99)

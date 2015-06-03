@@ -36,5 +36,6 @@
 </table>
 
 <br>
-
+<%= will_paginate books, renderer: BootstrapPagination::Rails %>
+<br>
 <%= link_to 'New Book', new_book_path %>
