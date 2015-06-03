@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'devise'
 gem 'carrierwave'
 gem 'rmagick'
 gem 'will_paginate', '~> 3.0.6'
