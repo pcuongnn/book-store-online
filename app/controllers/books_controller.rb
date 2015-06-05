@@ -1,11 +1,13 @@
 class BooksController < ApplicationController
   before_action :set_book,:authenticate_user!, only: [:show, :edit, :update, :destroy]
   impressionist :actions=>[:show,:index]
+  before_action :comfirm_adim, only: [:new, :edit, :update, :destroy]
   # GET /books
   # GET /books.json
   def index
     @books = Book.paginate(:page => params[:page], :per_page => 5).order('price DESC')
     @most_viewed = Book.order('impressions_count DESC').take(3)
+    @latest_release = Book.order('created_at DESC').take(3)
   end
 
   # GET /books/1

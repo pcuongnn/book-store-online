@@ -8,4 +8,10 @@ class ApplicationController < ActionController::Base
   	@categories = Category.all
   	@authors = Author.all
   end
+
+  def comfirm_adim
+  	unless current_user.try(:admin?)
+  		redirect_to new_user_session_path
+  	end
+  end
 end

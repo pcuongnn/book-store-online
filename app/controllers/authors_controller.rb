@@ -1,6 +1,6 @@
 class AuthorsController < ApplicationController
   before_action :set_author, only: [:show, :edit, :update, :destroy]
-
+  before_action :comfirm_adim, only: [:new, :edit, :update, :destroy]
   # GET /authors
   # GET /authors.json
   def index
@@ -12,6 +12,7 @@ class AuthorsController < ApplicationController
   def show
     @author_book_list = @author.books.paginate(:page => params[:page], :per_page => 5).order('price DESC')  
     @author_most_viewed = @author.books.order('impressions_count DESC').take(3)
+    @author_latest_release = @author.books.order('created_at DESC').take(3)
   end
 
   # GET /authors/new

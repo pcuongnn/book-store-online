@@ -2,18 +2,35 @@
   <img src=<%= asset_path "large.jpg"%> width='100%'>
 </div>
 
+<div class="row">
+<div class="col-sm-2">
+  <ul class="nav nav-pills nav-stacked text-center">
+        <li class="active"><a href=<%= books_path %>>Author</a></li>
+        <% authors.each do |author| %>
+          <li><a href=<%= author_path(author) %>><%= author.name %></a><li>
+        <% end %>
+  </ul>
+  <ul class="nav nav-pills nav-stacked text-center">
+        <li class="active"><a href=<%= books_path %>>Categories</a></li>
+        <% categories.each do |category| %>
+          <li><a href=<%= category_path(category) %>><%= category.name %></a><li>
+        <% end %>
+  </ul>      
+</div>
+
+<div class="col-sm-8">
 <h1>Most Viewed</h1>
 
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>Image</th>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Price</th>
-      <th>Category</th>
-      <th>Author</th>
-      <th>View</th>
+      <th class="text-danger">Image</th>
+      <th class="text-danger">Title</th>
+      <th class="text-danger">Description</th>
+      <th class="text-danger">Price</th>
+      <th class="text-danger">Category</th>
+      <th class="text-danger">Author</th>
+      <th class="text-danger">View</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -21,14 +38,14 @@
   <tbody>
     <% views.each do |view| %>
       <tr class="success">
-        <td><img src=<%= view.image_url %> width="50" height="70" ></td>
+        <td><a href=<%= book_path(view) %>><img src=<%= view.image_url %> width="90" height="120" ></a></td>
         <td><%= view.title %></td>
         <td><%= view.description %></td>
-        <td><%= view.price %></td>
+        <td><%= view.price %>$</td>
         <td><%= view.category.name %></td>
         <td><%= view.author.name %></td>
         <td><%= view.impressions_count %></td>
-        <td><%= link_to 'Show', view , class: "btn btn-success"  %></td>
+        <td><%= link_to 'Show', view , class: "btn btn-danger"  %></td>
       </tr>
     <% end %>
   </tbody>
@@ -40,13 +57,13 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>Image</th>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Price</th>
-      <th>Category</th>
-      <th>Author</th>
-      <th>View</th>
+      <th class="text-warning">Image</th>
+      <th class="text-warning">Title</th>
+      <th class="text-warning">Description</th>
+      <th class="text-warning">Price</th>
+      <th class="text-warning">Category</th>
+      <th class="text-warning">Author</th>
+      <th class="text-warning">View</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -54,14 +71,14 @@
   <tbody>
     <% books.each do |book| %>
       <tr>
-        <td><img src=<%= book.image_url %> width="90" height="120" ></td>
+        <td><a href=<%= book_path(book) %>><img src=<%= book.image_url %> width="90" height="120" ></a></td>
         <td><%= book.title %></td>
         <td><%= book.description %></td>
-        <td><%= book.price %></td>
+        <td><%= book.price %>$</td>
         <td><%= book.category.name %></td>
         <td><%= book.author.name %></td>
         <td><%= book.impressions_count %></td>
-        <td><%= link_to 'Show', book , class: "btn btn-primary" %></td>
+        <td><%= link_to 'Show', book , class: "btn btn-warning" %></td>
         <% if current_user.try(:admin?) %>
         <td><%= link_to 'Edit', edit_book_path(book) %></td>
         <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -74,4 +91,21 @@
 <br>
 <%= will_paginate books, renderer: BootstrapPagination::Rails %>
 <br>
-<%= link_to 'New Book', new_book_path , class: "btn btn-warning"%>
+<% if current_user.try(:admin?) %>
+  <%= link_to 'New Book', new_book_path , class: "btn btn-danger"%>
+<% end %>
+</div>
+
+<div class="col-sm-2">
+  <ul class="nav nav-pills nav-stacked text-center">
+        <li class="active"><a href="#">New Book</a></li>
+        <% latest_release.each do |latest| %>
+          <li>
+            <a href=<%= book_path(latest) %>><%= latest.title %></a>
+            <img src=<%= latest.image_url %> width="90" height="120" >
+          <li>
+        <% end %>
+  </ul>
+</div>
+
+</div>

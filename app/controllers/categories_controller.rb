@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
-
+  before_action :comfirm_adim, only: [:new, :edit, :update, :destroy]
   # GET /categories
   # GET /categories.json
   def index
@@ -12,6 +12,7 @@ class CategoriesController < ApplicationController
   def show
     @category_book_list = @category.books.paginate(:page => params[:page], :per_page => 5).order('price DESC')
     @category_most_viewed = @category.books.order('impressions_count DESC').take(3)
+    @category_latest_release = @category.books.order('created_at DESC').take(3)
   end
 
   # GET /categories/new
